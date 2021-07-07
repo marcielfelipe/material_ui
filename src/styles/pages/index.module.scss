@@ -1,0 +1,32 @@
+.container{
+  display: grid;
+  grid-template-columns: 1fr 500px 1fr;
+  grid-template-rows: 1fr 400px 1fr;
+  height: 100vh;
+  width: 100vw;
+  .logo{
+    grid-column: 2;
+    grid-row: 1;
+    height:60px;
+    justify-self: center;
+    align-self: center;
+  }
+  .input{
+    height: 50px;
+    margin-top: 1rem;
+  }
+  .button{
+    height: 50px;
+    margin-top: 2rem;
+  }
+  .form{
+    background: #202024;
+    grid-column: 2;
+    grid-row: 2;
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    padding:1rem;
+    box-sizing: border-box;
+  }
+}
