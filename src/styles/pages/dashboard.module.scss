@@ -1,20 +1,36 @@
 .container{
   background-size: border-box;
   height: calc(100vh - 60px);
-  padding: 1.4rem;
   display: flex; 
   justify-content: space-between;
+  .navbar{
+    width: 250px;
+    height:calc(100vh - 60px);
+    box-shadow: 5px 0px 10px  rgba(0, 0, 0, 0.2);
+    scroll-behavior: initial;
+    overflow: auto;  
+    
+  }
+  .navbar::-webkit-scrollbar {
+    width: 10px;              /* width of the entire scrollbar */
+  }
+  .navbar::-webkit-scrollbar-track {
+    background:transparent;        /* color of the tracking area */
+  }
+  .navbar::-webkit-scrollbar-thumb {
+    background-color: #171C24;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+  }
+
+
+  
   .infoContainer{
-    height: calc((100vh - 60px) - 2.8rem);
-    width: calc((100vw - 200px) - 4.2rem);
-    background: #4B4B54;
-    border-radius: 6px;
-    padding: 1rem;
+    height: calc(100vh - 60px);
+    width: calc(100vw - 200px);
+    padding: 30px;
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
-    .cardAudio{
-      width: 470px;
-    }
+    gap: 15px;
+
   }
 }

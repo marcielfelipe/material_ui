@@ -17,7 +17,7 @@ const useStylesUI = makeStyles((theme) => ({
   },
   menuItem:{
     '& > *':{
-      background: theme.palette.secondary.light
+      background: theme.palette.background.default
     }
   }
 }));

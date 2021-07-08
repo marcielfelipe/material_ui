@@ -1,5 +1,5 @@
 import { createTheme } from '@material-ui/core/styles';
-import { colors } from '@material-ui/core';
+import {colors} from '@material-ui/core/'
 
 // Create a theme instance.
 const theme = createTheme({
@@ -9,16 +9,16 @@ const theme = createTheme({
       light: '#0084C2'
     },
     secondary: {
-      main: '#202024',
+      main: '#171C24',
       light: '#4B4B54'
     },
     text: {
       primary: '#ffffff',
-      secondary: '#202024'
+      secondary: '#171C24'
     },
     background: {
-      default: '#121214',
-      paper:'#202024'
+      default: '#222B36',
+      paper:'#171C24'
     }
   },
 });
