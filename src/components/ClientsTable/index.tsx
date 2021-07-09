@@ -21,24 +21,24 @@ import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
+function createData(name, enterprise, email, phone) {
+  return { name, enterprise, email, phone };
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+  createData('Maria Ferreira', 'maria@email.com', 3.7, 67),
+  createData('Jeam Oliveira', 452, 25.0, 51),
+  createData('Diego Romaike', 262, 16.0, 24),
+  createData('Franciely', 159, 6.0, 24),
+  createData('Luciano Silva', 356, 16.0, 49),
+  createData('Ricardo Alivino', 408, 3.2, 87),
+  createData('Edna Mendonça', 237, 9.0, 37),
+  createData('Márcio Silva', 375, 0.0, 94),
+  createData('José Oliveira', 518, 26.0, 65),
+  createData('Daniel Barbosa', 392, 0.2, 98),
+  createData('Cristinei Lemos', 318, 0, 81),
+  createData('Leandro Silva', 360, 19.0, 9 ),
+  createData('Saulo Prado', 437, 18.0, 63),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -68,11 +68,10 @@ function stableSort(array, comparator) {
 }
 
 const headCells = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'name', numeric: false, disablePadding: true, label: 'Nome' },
+  { id: 'enterprise', numeric: false, disablePadding: true, label: 'Empresa' },
+  { id: 'email', numeric: false, disablePadding: true, label: 'E-mail' },
+  { id: 'phone', numeric: false, disablePadding: true, label: 'Telefone' }
 ];
 
 function EnhancedTableHead(props) {
@@ -84,7 +83,7 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding="checkbox" className={classes.checkbox}>
           <Checkbox
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
@@ -95,7 +94,7 @@ function EnhancedTableHead(props) {
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
+            align={headCell.numeric ? 'left' : 'left'}
             padding={headCell.disablePadding ? 'none' : 'normal'}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -107,7 +106,7 @@ function EnhancedTableHead(props) {
               {headCell.label}
               {orderBy === headCell.id ? (
                 <span className={classes.visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === 'desc' ? '' : ''}
                 </span>
               ) : null}
             </TableSortLabel>
@@ -133,16 +132,10 @@ const useToolbarStyles = makeStyles((theme) => ({
     paddingLeft: theme.spacing(2),
     paddingRight: theme.spacing(1),
   },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-          color: theme.palette.secondary.main,
-          backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-        }
-      : {
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.secondary.dark,
-        },
+  highlight:{
+      color: theme.palette.common.white,
+    },
+      
   title: {
     flex: '1 1 100%',
   },
@@ -160,11 +153,11 @@ const EnhancedTableToolbar = (props) => {
     >
       {numSelected > 0 ? (
         <Typography className={classes.title} color="inherit" variant="subtitle1" component="div">
-          {numSelected} selected
+          {numSelected} selecionados
         </Typography>
       ) : (
         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-          Nutrition
+          Clientes
         </Typography>
       )}
 
@@ -192,31 +185,39 @@ EnhancedTableToolbar.propTypes = {
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
+    height: '100%',
   },
   paper: {
     width: '100%',
+    height: '100%',
     marginBottom: theme.spacing(2),
+    backgroundColor: theme.palette.primary.main,
+    overflow: 'auto'
   },
   table: {
     minWidth: 750,
+    
   },
-  visuallyHidden: {
-    border: 0,
-    clip: 'rect(0 0 0 0)',
-    height: 1,
-    margin: -1,
-    overflow: 'hidden',
-    padding: 0,
-    position: 'absolute',
-    top: 20,
-    width: 1,
-  },
+  checkbox:{
+    color: theme.palette.common.white
+  }
+  // visuallyHidden: {
+  //   border: 0,
+  //   clip: 'rect(0 0 0 0)',
+  //   height: '100%',
+  //   margin: -1,
+  //   overflow: 'hidden',
+  //   padding: 0,
+  //   position: 'absolute',
+  //   top: 20,
+  //   width: 1,
+  // },
 }));
 
 export default function ClientsTable() {
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
+  const [orderBy, setOrderBy] = React.useState('name');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
@@ -307,7 +308,7 @@ export default function ClientsTable() {
                       key={row.name}
                       selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
+                      <TableCell padding="checkbox" className={classes.checkbox}>
                         <Checkbox
                           checked={isItemSelected}
                           inputProps={{ 'aria-labelledby': labelId }}
@@ -316,23 +317,22 @@ export default function ClientsTable() {
                       <TableCell component="th" id={labelId} scope="row" padding="none">
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="center">{row.enterprise}</TableCell>
+                      <TableCell align="center">{row.email}</TableCell>
+                      <TableCell align="center">{row.phone}</TableCell>
                     </TableRow>
                   );
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: (33) * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={8} />
                 </TableRow>
               )}
             </TableBody>
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[5, 8, 15]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}

@@ -1,3 +1,5 @@
+
+
 .container{
   background-size: border-box;
   height: calc(100vh - 60px);
@@ -21,16 +23,40 @@
     background-color: #171C24;    /* color of the scroll thumb */
     border-radius: 20px;       /* roundness of the scroll thumb */
   }
-
-
   
   .infoContainer{
+    box-sizing: border-box;
     height: calc(100vh - 60px);
     width: calc(100vw - 200px);
-    padding: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+    padding: 2rem;
+    display: grid;
+    grid-template-columns:repeat(3, calc((100% / 3) - .667rem)) ;
+    grid-template-rows: repeat(4, 170px);
+    gap: 1rem;
+    & > *{
+      border-radius: 6px;
+      background-color: #171C24;
+    }
+    .totalReceived{
+      grid-row: 1;
+      grid-column: 1;
+    }
+    .totalAReceive{
+      grid-row: 1;
+      grid-column: 2;
+    }
+    .totalLost{
+      grid-row: 1;
+      grid-column: 3;
+    }
+    .totalClients{
+      grid-row: 2 / 4;
+      grid-column: 1 / 3;
+    }
+    .calendar{
+      grid-row: 2 / 4;
+      grid-column: 3;
+    }
 
   }
 }
